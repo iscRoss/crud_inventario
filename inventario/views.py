@@ -13,7 +13,11 @@ from rest_framework.decorators import api_view
 def home(request):
     return render(request, 'index.html')
 def form_catg_tipoproducto(request):
-    return render(request, 'inventario/catg_tipoproducto_detail.html')
+    return render(request, 'inventario/catg_tipoproducto_post.html')
+
+def form_edit_catg_tipoproducto(request, pk):
+    return render(request, 'inventario/catg_tipoproducto_put.html')
+
 
 
 @api_view(['GET', 'POST'])

@@ -26,7 +26,7 @@ class ProfileList(APIView):
     
 class POST_FORM(APIView):
     renderer_classes = [TemplateHTMLRenderer]
-    template_name = 'inventario/catg_tipoproducto_detail.html'
+    template_name = 'inventario/catg_tipoproducto_post.html'
 
     def get(self, request):
         queryset = catg_tipo_producto.objects.all()
@@ -44,11 +44,7 @@ class catgInventarioAPI(APIView):
         return Response(data)
     @transaction.atomic()
     def post(self, request):
-        print(request.data)
-
-        inventario_json = JSONParser().parse(request)
-        print(inventario_json)
-        inv_serializer = serializer_tipo_producto(data=inventario_json)
+        inv_serializer = serializer_tipo_producto(data=request.data)
         if inv_serializer.is_valid():
             inv_serializer.save()
             return JsonResponse(inv_serializer.data, status=status.HTTP_201_CREATED) 

@@ -8,6 +8,7 @@ urlpatterns = [
     
     path('api-index-list', (ProfileList.as_view()), name = 'api-index-list'),
     path('tipo-producto-form', (form_catg_tipoproducto), name = 'tipo-producto-form'),
+    path('api-put/<int:pk>', (form_edit_catg_tipoproducto), name = 'api-put'),
 
     path('def-list', (tipo_producto_list), name = 'def-list'),
     path('def-list/<int:pk>',tipo_producto_detail, name = 'editar-tipoproducto'), 

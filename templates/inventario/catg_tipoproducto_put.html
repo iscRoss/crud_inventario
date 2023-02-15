@@ -4,8 +4,11 @@
 {%block Contenido%}
 
 <form  id="post_form" enctype="multipart/form-data"  action="" >
-    <label>Tipo de producto</label><input type="text" name="tipo_producto" id="tipo_producto" placeholder="Tipo de producto">
-    <button class="btn btn-primary" id="btn_guardar"/><span class="ladda-label">submit</span></button>
+
+    <label>Tipo de producto</label>
+    <input class="form-control" type="text" name="pk_tipo_producto" id="pk_tipo_producto" >
+    <input class="form-control" type="text" name="tipo_producto" id="tipo_producto" placeholder="Tipo de producto">
+    <br><button class="btn btn-primary" id="btn_guardar"/><span class="ladda-label">Guardar</span></button>
 </form>
 {%endblock Contenido%}
 {%block ExtraJS%}
@@ -15,12 +18,11 @@
 
         $.ajax({
         type:"POST",
-
         data:$('#post_form').serialize(),
         url: '/inventario/api-list',
 
           error: function(response){
-            alert('Not authorized.');  // Or something in a message DIV
+            alert('Error de api');  // Or something in a message DIV
           },
           success: function(response){
             console.log(response);
@@ -32,4 +34,3 @@
 
 </script>
 {%endblock ExtraJS%}
-
