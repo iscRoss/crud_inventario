@@ -1,0 +1,18 @@
+{%extends "base.html" %}
+{%load static %}
+{%block title%}<title>Inventario</title>{%endblock title%}
+
+{%block Contenido%}
+<center><h1>Catalogo de Tipos de productos</h1></center><br>
+<h5> 
+URLS de servicios get: <br>http://127.0.0.1:8000/inventario/api-list <br>
+ http://127.0.0.1:8000/inventario/api-list2 <br>
+ http://127.0.0.1:8000/inventario/def-list <br>
+</h5>
+<br>
+<ul>
+    {% for qs in queryset %}
+    <li>{{ qs.pk_tipo_producto }} - {{ qs.tipo_producto }}</li>
+    {% endfor %}
+</ul>
+{%endblock Contenido%}

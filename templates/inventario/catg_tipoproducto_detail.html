@@ -1,0 +1,35 @@
+{%extends "base.html" %}
+{%load static %}
+
+{%block Contenido%}
+
+<form  id="post_form" enctype="multipart/form-data"  action="" >
+    <label>Tipo de producto</label><input type="text" name="tipo_producto" id="tipo_producto" placeholder="Tipo de producto">
+    <button class="btn btn-primary" id="btn_guardar"/><span class="ladda-label">submit</span></button>
+</form>
+{%endblock Contenido%}
+{%block ExtraJS%}
+
+<script>
+    $('#post_form').on('submit', function(e) { e.preventDefault()
+
+        $.ajax({
+        type:"POST",
+
+        data:$('#post_form').serialize(),
+        url: '/inventario/api-list',
+
+          error: function(response){
+            alert('Not authorized.');  // Or something in a message DIV
+          },
+          success: function(response){
+            console.log(response);
+
+          // do something with response
+          }
+        });
+      });
+
+</script>
+{%endblock ExtraJS%}
+
