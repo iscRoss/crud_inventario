@@ -10,6 +10,9 @@ URLS de servicios get: <br>http://127.0.0.1:8000/inventario/api-list <br>
  http://127.0.0.1:8000/inventario/def-list <br>
 </h5>
 <br>
+<a href= "tipo-producto-form" >
+    <button class="btn btn-primary">Formulario tipo producto</button>
+    </a>
 <ul>
     {% for qs in queryset %}
     <li>{{ qs.pk_tipo_producto }} - {{ qs.tipo_producto }}</li>
