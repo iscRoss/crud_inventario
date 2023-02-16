@@ -16,7 +16,7 @@ def form_catg_tipoproducto(request):
     return render(request, 'inventario/catg_tipoproducto_post.html')
 
 def form_edit_catg_tipoproducto(request, pk):
-    return render(request, 'inventario/catg_tipoproducto_put.html')
+    return render(request, 'inventario/catg_tipoproducto_put.html',{'pk':pk})
 
 
 

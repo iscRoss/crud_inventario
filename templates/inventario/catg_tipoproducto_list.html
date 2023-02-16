@@ -4,18 +4,54 @@
 
 {%block Contenido%}
 <center><h1>Catalogo de Tipos de productos</h1></center><br>
-<h5> 
-URLS de servicios get: <br>http://127.0.0.1:8000/inventario/api-list <br>
+<div class ="row">
+<div class="col">
+URLS de servicios GET: <br>http://127.0.0.1:8000/inventario/api-list <br>
  http://127.0.0.1:8000/inventario/api-list2 <br>
  http://127.0.0.1:8000/inventario/def-list <br>
-</h5>
+</div>
+<div class="col">
+    URLS de servicios POST: <br>http://127.0.0.1:8000/inventario/api-list <br>
+ http://127.0.0.1:8000/inventario/def-list <br>
+</div>
+<div class="col">
+    URLS de servicios GET-PUT-DELETE: <br>http://127.0.0.1:8000/inventario/api-list/pk <br>
+ http://127.0.0.1:8000/inventario/def-list/pk <br>
+</div>
+</div>
 <br>
 <a href= "tipo-producto-form" >
     <button class="btn btn-primary">Formulario tipo producto</button>
     </a>
 <ul>
     {% for qs in queryset %}
-    <li>{{ qs.pk_tipo_producto }} - {{ qs.tipo_producto }}- <a href="api-put/{{ qs.pk_tipo_producto }}">Editar</a></li>
+    <li>{{ qs.pk_tipo_producto }} - {{ qs.tipo_producto }}- <a class ="btn btn-warning btn-sm"href="api-put/{{ qs.pk_tipo_producto }}">Editar</a> <button onClick="eliminar_catg_tipo_produto({{ qs.pk_tipo_producto }})" class="btn btn-danger btn-sm">Eliminar</button></li>
     {% endfor %}
 </ul>
 {%endblock Contenido%}
+{%block ExtraJS%}
+<script>
+
+    function eliminar_catg_tipo_produto(pk){
+        $.ajax({
+            type:"DELETE",
+            url: '/inventario/api-list/'+pk,
+    
+              error: function(response){
+                alert('Error de api');  // Or something in a message DIV
+              },
+              success: function(response){
+                console.log(response);
+                window.location.href = "api-index-list";
+    
+              // do something with response
+              }
+            });
+
+    }
+
+
+</script>
+
+
+{%endblock ExtraJS%}

@@ -6,7 +6,7 @@
 <form  id="post_form" enctype="multipart/form-data"  action="" >
 
     <label>Tipo de producto</label>
-    <input class="form-control" type="text" name="pk_tipo_producto" id="pk_tipo_producto" >
+    <input class="form-control" type="text" name="pk_tipo_producto" id="pk_tipo_producto" value="{{pk}}" hidden>
     <input class="form-control" type="text" name="tipo_producto" id="tipo_producto" placeholder="Tipo de producto">
     <br><button class="btn btn-primary" id="btn_guardar"/><span class="ladda-label">Guardar</span></button>
 </form>
@@ -14,20 +14,34 @@
 {%block ExtraJS%}
 
 <script>
+    $(document).ready( function () {
+        $.ajax({
+            type:"get",
+            url: '/inventario/api-list/{{pk}}',
+              error: function(response){
+                alert('Registro no encontrado ');  // Or something in a message DIV
+                $("#btn_guardar").hide()
+              },
+              success: function(response){
+                console.log(response);
+                $("#tipo_producto").val(response.tipo_producto)
+              }
+            });
+    });
     $('#post_form').on('submit', function(e) { e.preventDefault()
 
         $.ajax({
-        type:"POST",
+        type:"PUT",
         data:$('#post_form').serialize(),
-        url: '/inventario/api-list',
+        url: '/inventario/api-list/{{pk}}',
 
           error: function(response){
             alert('Error de api');  // Or something in a message DIV
           },
           success: function(response){
             console.log(response);
+            window.location.href = "../api-index-list";
 
-          // do something with response
           }
         });
       });

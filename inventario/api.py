@@ -24,13 +24,6 @@ class ProfileList(APIView):
         queryset = catg_tipo_producto.objects.all()
         return Response({'queryset': queryset})
     
-class POST_FORM(APIView):
-    renderer_classes = [TemplateHTMLRenderer]
-    template_name = 'inventario/catg_tipoproducto_post.html'
-
-    def get(self, request):
-        queryset = catg_tipo_producto.objects.all()
-        return Response({'queryset': queryset})
 
 class catgInventarioAPI(APIView):
 
